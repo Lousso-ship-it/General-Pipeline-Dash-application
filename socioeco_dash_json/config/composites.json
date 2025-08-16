@@ -1,0 +1,297 @@
+{
+  "Growth_Productivity": {
+    "description": "Growth & Productivity index.",
+    "components": [
+      {
+        "code": "NY.GDP.MKTP.KD.ZG"
+      },
+      {
+        "code": "NY.GDP.PCAP.KD"
+      },
+      {
+        "code": "NE.GDI.TOTL.ZS"
+      },
+      {
+        "code": "BX.KLT.DINV.WD.GD.ZS"
+      },
+      {
+        "code": "NV.IND.TOTL.ZS"
+      }
+    ]
+  },
+  "Macro_Stability": {
+    "description": "Macroeconomic stability.",
+    "components": [
+      {
+        "code": "FP.CPI.TOTL.ZG",
+        "invert": true
+      },
+      {
+        "code": "BN.CAB.XOKA.GD.ZS"
+      },
+      {
+        "code": "GC.NLD.TOTL.GD.ZS"
+      },
+      {
+        "code": "GC.DOD.TOTL.GD.ZS",
+        "invert": true
+      },
+      {
+        "code": "FR.INR.RINR",
+        "invert": true
+      }
+    ]
+  },
+  "Labor_Market_Health": {
+    "description": "Employment & participation.",
+    "components": [
+      {
+        "code": "SL.UEM.TOTL.ZS",
+        "invert": true
+      },
+      {
+        "code": "SL.UEM.1524.ZS",
+        "invert": true
+      },
+      {
+        "code": "SL.TLF.CACT.ZS"
+      },
+      {
+        "code": "SL.EMP.TOTL.SP.NE.ZS"
+      }
+    ]
+  },
+  "Education_HumanCapital": {
+    "description": "Education attainment & spending.",
+    "components": [
+      {
+        "code": "SE.ADT.LITR.ZS"
+      },
+      {
+        "code": "SE.SEC.ENRR"
+      },
+      {
+        "code": "SE.TER.ENRR"
+      },
+      {
+        "code": "SE.XPD.TOTL.GD.ZS"
+      }
+    ]
+  },
+  "Health_Longevity": {
+    "description": "Health outcomes & spending.",
+    "components": [
+      {
+        "code": "SP.DYN.LE00.IN"
+      },
+      {
+        "code": "SP.DYN.IMRT.IN",
+        "invert": true
+      },
+      {
+        "code": "SH.XPD.CHEX.GD.ZS"
+      }
+    ]
+  },
+  "Poverty_Inequality": {
+    "description": "Lower poverty & inequality.",
+    "components": [
+      {
+        "code": "SI.POV.DDAY",
+        "invert": true
+      },
+      {
+        "code": "SI.POV.GINI",
+        "invert": true
+      }
+    ]
+  },
+  "Inclusion_FinAccess": {
+    "description": "Account ownership & internet.",
+    "components": [
+      {
+        "code": "FX.OWN.TOTL.ZS"
+      },
+      {
+        "code": "IT.NET.USER.ZS"
+      }
+    ]
+  },
+  "External_Competitiveness": {
+    "description": "Trade & current account.",
+    "components": [
+      {
+        "code": "NE.TRD.GNFS.ZS"
+      },
+      {
+        "code": "BN.CAB.XOKA.GD.ZS"
+      },
+      {
+        "code": "NE.EXP.GNFS.ZS"
+      }
+    ]
+  },
+  "Fiscal_Sustainability": {
+    "description": "Debt & budget balance.",
+    "components": [
+      {
+        "code": "GC.DOD.TOTL.GD.ZS",
+        "invert": true
+      },
+      {
+        "code": "GC.NLD.TOTL.GD.ZS"
+      }
+    ]
+  },
+  "Innovation_Digital": {
+    "description": "R&D & tertiary & internet.",
+    "components": [
+      {
+        "code": "GB.XPD.RSDV.GD.ZS"
+      },
+      {
+        "code": "IT.NET.USER.ZS"
+      },
+      {
+        "code": "SE.TER.ENRR"
+      }
+    ]
+  },
+  "Demographic_Dynamism": {
+    "description": "Population dynamics.",
+    "components": [
+      {
+        "code": "SP.POP.GROW"
+      },
+      {
+        "code": "SP.DYN.CBRT.IN"
+      },
+      {
+        "code": "SP.DYN.CDRT.IN",
+        "invert": true
+      }
+    ]
+  },
+  "Environmental_Sustainability": {
+    "description": "CO2 and renewables.",
+    "components": [
+      {
+        "code": "EN.ATM.CO2E.PC",
+        "invert": true
+      },
+      {
+        "code": "EG.ELC.RNEW.ZS"
+      }
+    ]
+  },
+  "Urbanization_Quality": {
+    "description": "Urban share & energy use.",
+    "components": [
+      {
+        "code": "SP.URB.TOTL.IN.ZS"
+      },
+      {
+        "code": "EG.USE.PCAP.KG.OE",
+        "invert": true
+      }
+    ]
+  },
+  "Capital_Formation": {
+    "description": "Investment & FDI.",
+    "components": [
+      {
+        "code": "NE.GDI.TOTL.ZS"
+      },
+      {
+        "code": "BX.KLT.DINV.WD.GD.ZS"
+      }
+    ]
+  },
+  "Trade_Openness": {
+    "description": "Trade integration.",
+    "components": [
+      {
+        "code": "NE.TRD.GNFS.ZS"
+      },
+      {
+        "code": "NE.EXP.GNFS.ZS"
+      },
+      {
+        "code": "NE.IMP.GNFS.ZS"
+      }
+    ]
+  },
+  "Living_Standards": {
+    "description": "Income & longevity.",
+    "components": [
+      {
+        "code": "NY.GDP.PCAP.KD"
+      },
+      {
+        "code": "SP.DYN.LE00.IN"
+      }
+    ]
+  },
+  "Financial_Deepening": {
+    "description": "Credit to private + accounts.",
+    "components": [
+      {
+        "code": "FS.AST.PRVT.GD.ZS"
+      },
+      {
+        "code": "FX.OWN.TOTL.ZS"
+      }
+    ]
+  },
+  "Price_Stability": {
+    "description": "Inflation & real rate.",
+    "components": [
+      {
+        "code": "FP.CPI.TOTL.ZG",
+        "invert": true
+      },
+      {
+        "code": "FR.INR.RINR",
+        "invert": true
+      }
+    ]
+  },
+  "Human_Opportunity": {
+    "description": "Education + inclusion.",
+    "components": [
+      {
+        "code": "SE.SEC.ENRR"
+      },
+      {
+        "code": "FX.OWN.TOTL.ZS"
+      },
+      {
+        "code": "IT.NET.USER.ZS"
+      }
+    ]
+  },
+  "Wealth_Equality": {
+    "description": "Inequality & poverty.",
+    "components": [
+      {
+        "code": "SI.POV.GINI",
+        "invert": true
+      },
+      {
+        "code": "SI.POV.DDAY",
+        "invert": true
+      }
+    ]
+  },
+  "Public_Services_Commitment": {
+    "description": "Education & Health spending.",
+    "components": [
+      {
+        "code": "SE.XPD.TOTL.GD.ZS"
+      },
+      {
+        "code": "SH.XPD.CHEX.GD.ZS"
+      }
+    ]
+  }
+}
