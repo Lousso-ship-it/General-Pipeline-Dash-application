@@ -35,26 +35,39 @@ def init_db(conn: sqlite3.Connection) -> None:
 
 def upsert_raw(conn: sqlite3.Connection, rows: Iterable[Dict[str, Any]]) -> int:
     cur = conn.cursor()
-    count = 0
-    for r in rows:
-        cur.execute(
-            "INSERT OR REPLACE INTO raw_values(country,country_name,code,indicator_name,date,value) "
-            "VALUES (?,?,?,?,?,?)",
-            (r.get("country"), r.get("country_name"), r.get("code"), r.get("indicator_name"), r.get("date"), r.get("value"))
+    data = [
+        (
+            r.get("country"),
+            r.get("country_name"),
+            r.get("code"),
+            r.get("indicator_name"),
+            r.get("date"),
+            r.get("value"),
         )
-        count += 1
+        for r in rows
+    ]
+    if not data:
+        return 0
+    cur.executemany(
+        "INSERT OR REPLACE INTO raw_values(country,country_name,code,indicator_name,date,value) "
+        "VALUES (?,?,?,?,?,?)",
+        data,
+    )
     conn.commit()
-    return count
+    return len(data)
 
 def upsert_composite(conn: sqlite3.Connection, rows: Iterable[Dict[str, Any]]) -> int:
     cur = conn.cursor()
-    count = 0
-    for r in rows:
-        cur.execute(
-            "INSERT OR REPLACE INTO composite_values(country, composite, date, value) "
-            "VALUES (?,?,?,?)",
-            (r.get("country"), r.get("composite"), r.get("date"), r.get("value"))
-        )
-        count += 1
+    data = [
+        (r.get("country"), r.get("composite"), r.get("date"), r.get("value"))
+        for r in rows
+    ]
+    if not data:
+        return 0
+    cur.executemany(
+        "INSERT OR REPLACE INTO composite_values(country, composite, date, value) "
+        "VALUES (?,?,?,?)",
+        data,
+    )
     conn.commit()
-    return count
+    return len(data)

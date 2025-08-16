@@ -1,6 +1,7 @@
 
 import os
 import json
+from typing import Iterable, Any, Optional
 import pandas as pd
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
@@ -9,9 +10,9 @@ import sqlite3
 DB_PATH = os.environ.get("DB_PATH", "data/socioeco.db")
 COMPOSITES_JSON = os.environ.get("COMPOSITES_JSON", "config/composites.json")
 
-def read_table(query: str) -> pd.DataFrame:
+def read_table(query: str, params: Optional[Iterable[Any]] = None) -> pd.DataFrame:
     conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query(query, conn)
+    df = pd.read_sql_query(query, conn, params=params)
     conn.close()
     return df
 
@@ -76,13 +77,14 @@ app.layout = html.Div([
 def update_component_graph(code, selected_countries):
     if code is None or not selected_countries:
         return px.line()
-    in_clause = ",".join([f"'{c}'" for c in selected_countries])
+    placeholders = ",".join("?" for _ in selected_countries)
     q = f"""
         SELECT country, date, value FROM raw_values
-        WHERE code = '{code.replace("'", "''")}' AND country IN ({in_clause})
+        WHERE code = ? AND country IN ({placeholders})
         ORDER BY date
     """
-    df = read_table(q)
+    params = [code] + list(selected_countries)
+    df = read_table(q, params)
     fig = px.line(df, x="date", y="value", color="country", markers=True, title=code_to_name.get(code, code))
     return fig
 
@@ -94,14 +96,15 @@ def update_component_graph(code, selected_countries):
 def update_composite_graph(comp_name, selected_countries):
     if comp_name is None or not selected_countries:
         return px.line()
-    in_clause = ",".join([f"'{c}'" for c in selected_countries])
+    placeholders = ",".join("?" for _ in selected_countries)
     q = f"""
         SELECT country, date, value FROM composite_values
-        WHERE composite = '{comp_name.replace("'", "''")}'
-          AND country IN ({in_clause})
+        WHERE composite = ?
+          AND country IN ({placeholders})
         ORDER BY date
     """
-    df = read_table(q)
+    params = [comp_name] + list(selected_countries)
+    df = read_table(q, params)
     fig = px.line(df, x="date", y="value", color="country", markers=True, title=comp_name)
     return fig
 
