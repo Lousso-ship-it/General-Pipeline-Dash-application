@@ -7,7 +7,6 @@ from .normalize import min_max_normalize
 
 def compute_composites(db_path: str="data/socioeco.db", composites_json: str="config/composites.json") -> None:
     conn = get_conn(db_path)
-    raw = pd.read_sql_query("SELECT country, date, code, value FROM raw_values", conn)
     with open(composites_json, "r") as f:
         comps: Dict[str, Any] = json.load(f)
 
@@ -17,7 +16,12 @@ def compute_composites(db_path: str="data/socioeco.db", composites_json: str="co
         if not components:
             continue
         codes = [c["code"] for c in components]
-        sub = raw[raw["code"].isin(codes)].copy()
+        placeholders = ",".join("?" for _ in codes)
+        sub = pd.read_sql_query(
+            f"SELECT country, date, code, value FROM raw_values WHERE code IN ({placeholders})",
+            conn,
+            params=codes,
+        )
         if sub.empty:
             continue
         frames = []
